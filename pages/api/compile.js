@@ -7,6 +7,7 @@ export default function handler(req, res) {
   }
 
   const { repoUrl, boardType } = req.body;
+  
   // Validasi input
   if (!repoUrl || !boardType) {
     return res.status(400).json({ error: 'Repository URL and board type are required' });
@@ -18,6 +19,8 @@ export default function handler(req, res) {
 
   // Simulasi proses kompilasi dengan masa rawak untuk realism
   const delay = Math.floor(Math.random() * 3000) + 2000; // 2-5 saat
+  
+  setTimeout(() => {
   setTimeout(() => {
     // Respons berjaya
     res.status(200).json({

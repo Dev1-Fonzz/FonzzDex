@@ -7,6 +7,7 @@ export default function handler(req, res) {
   }
 
   const { firmwarePath, port, boardType } = req.body;
+  
   // Validasi input
   if (!firmwarePath || !port || !boardType) {
     return res.status(400).json({ error: 'Firmware path, port, and board type are required' });
@@ -18,6 +19,7 @@ export default function handler(req, res) {
 
   // Simulasi proses upload dengan masa rawak untuk realism
   const delay = Math.floor(Math.random() * 2000) + 1000; // 1-3 saat
+  
   setTimeout(() => {
     // Respons berjaya
     res.status(200).json({
@@ -29,5 +31,4 @@ export default function handler(req, res) {
       note: 'This is a simulation. Actual upload requires serial port access.'
     });
   }, delay);
-  }, 2000);
 }

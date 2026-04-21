@@ -57,52 +57,52 @@ export class FirmwareCompiler {
     // Dalam implementasi sebenar, ini akan:
     // 1. Memasang dependensi yang diperlukan
     // 2. Menjalankan alat kompilasi yang sesuai
-    // 3. Menghasilkan file .bin
+    // Simulasi proses kompilasi
+    setTimeout(() => {
+      if (!this.isBoardSupported(boardId)) {
+        reject(new Error(`Board ${boardId} is not supported`));
+        return;
+      }
 
-    return new Promise((resolve, reject) => {
-      // Simulasi proses kompilasi
-      setTimeout(() => {
-        if (!this.isBoardSupported(boardId)) {
-          reject(new Error(`Board ${boardId} is not supported`));
-          return;
-        }
+      // Hasilkan path firmware yang unik
+      const firmwarePath = `/tmp/firmware_${boardId}_${Date.now()}.bin`;
+      
+      resolve({
+        success: true,
+        firmwarePath: firmwarePath,
+        board: boardId,
+        timestamp: new Date().toISOString()
+      });
+    }, 3000);
+  });
+}
 
-        // Hasilkan path firmware yang unik
-        const firmwarePath = `/tmp/firmware_${boardId}_${Date.now()}.bin`;
-        
-        resolve({
-          success: true,
-          firmwarePath: firmwarePath,
-          board: boardId,
-          timestamp: new Date().toISOString()
-        });
-      }, 3000);
-    });
-  }
+// Simulasi proses muat naik
+async upload(firmwarePath, port, boardId) {
+  // Dalam implementasi sebenar, ini akan:
+  // 1. Membuka sambungan ke port serial
+  // 2. Menghantar firmware menggunakan protokol yang sesuai
+  // 3. Memantau kemajuan dan mengesahkan muat naik
 
-  // Simulasi proses muat naik
-  async upload(firmwarePath, port, boardId) {
-    // Dalam implementasi sebenar, ini akan:
-    // 1. Membuka sambungan ke port serial
-    // 2. Menghantar firmware menggunakan protokol yang sesuai
-    // 3. Memantau kemajuan dan mengesahkan muat naik
+  return new Promise((resolve, reject) => {
+    // Simulasi proses muat naik
+    setTimeout(() => {
+      if (!firmwarePath || !port || !boardId) {
+        reject(new Error('Missing required parameters'));
+        return;
+      }
 
-    return new Promise((resolve, reject) => {
-      // Simulasi proses muat naik
-      setTimeout(() => {
-        if (!firmwarePath || !port || !boardId) {
-          reject(new Error('Missing required parameters'));
-          return;
-        }
-
-        resolve({
-          success: true,
-          message: 'Firmware uploaded successfully',
-          port: port,
-          board: boardId,
-          timestamp: new Date().toISOString()
-        });
-      }, 2000);
+      resolve({
+        success: true,
+        message: 'Firmware uploaded successfully',
+        port: port,
+        board: boardId,
+        timestamp: new Date().toISOString()
+      });
+    }, 2000);
+  });
+}
+}
     });
   }
 }
