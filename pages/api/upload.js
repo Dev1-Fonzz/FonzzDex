@@ -1,4 +1,4 @@
-// API route untuk muat naik firmware ke peranti
+// API route untuk muat naik firmware - Versi Vercel (Demo)
 // Ini memerlukan akses ke port serial yang tidak tersedia dalam persekitaran browser
 
 export default function handler(req, res) {
@@ -7,27 +7,27 @@ export default function handler(req, res) {
   }
 
   const { firmwarePath, port, boardType } = req.body;
-
   // Validasi input
   if (!firmwarePath || !port || !boardType) {
     return res.status(400).json({ error: 'Firmware path, port, and board type are required' });
   }
 
-  // Dalam implementasi sebenar, di sini kita akan:
-  // 1. Buka sambungan ke port serial yang ditentukan
-  // 2. Baca file firmware .bin
-  // 3. Hantar firmware ke peranti melalui protokol yang sesuai
-  // 4. Pantau kemajuan muat naik
+  // Dalam Vercel, kita hanya boleh mensimulasi proses upload
+  // Kerana tidak ada akses ke port serial
+  console.log(`Simulating upload to ${port} for ${boardType}`);
 
-  // Simulasi proses muat naik
+  // Simulasi proses upload dengan masa rawak untuk realism
+  const delay = Math.floor(Math.random() * 2000) + 1000; // 1-3 saat
   setTimeout(() => {
     // Respons berjaya
     res.status(200).json({
       success: true,
-      message: 'Firmware uploaded successfully',
+      message: `Firmware uploaded successfully to ${port}`,
       port: port,
       board: boardType,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      note: 'This is a simulation. Actual upload requires serial port access.'
     });
+  }, delay);
   }, 2000);
 }
